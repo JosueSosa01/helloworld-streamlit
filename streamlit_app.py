@@ -1,46 +1,34 @@
 import streamlit as st
 
-st.title("Encuesta de selección múltiple")
+st.title("🚚 Opciones de Optimización Logística")
 
-# Pregunta 1
-colores = st.multiselect(
-    " ¿Cuáles son tus colores favoritos?",
-    ['Verde', 'Amarillo', 'Rojo', 'Azul', 'Negro'],
-    default=['Rojo', 'Azul', 'Verde']
-)
-st.write("Colores elegidos:", colores)
+st.write("Selecciona las estrategias que aplicarías para reducir los costos de envío:")
 
-# Pregunta 2
-comidas = st.multiselect(
-    "¿Qué tipos de comida te gustan más?",
-    ['Mexicana', 'Italiana', 'Japonesa', 'India', 'Vegana'],
-    default=['Mexicana', 'Japonesa', 'Italiana']
-)
-st.write("Comidas seleccionadas:", comidas)
+# Checkboxes relacionadas al reto
+uso_rutas = st.checkbox(" Optimizar rutas con menor distancia")
+consolidacion = st.checkbox(" Consolidar pedidos por zona")
+horarios = st.checkbox(" Establecer ventanas de entrega eficientes")
+proveedores = st.checkbox(" Usar proveedores locales")
+almacenamiento = st.checkbox("Reubicar centros de distribución")
 
-# Pregunta 3
-musica = st.multiselect(
-    "🎵 ¿Qué géneros musicales escuchas frecuentemente?",
-    ['Pop', 'Rock', 'Clásica', 'Reggaetón', 'Jazz'],
-    default=['Pop', 'Rock', 'Jazz']
-)
-st.write("Géneros musicales favoritos:", musica)
+# Mostrar selección
+st.subheader(" Estrategias seleccionadas:")
 
-# Pregunta 4
-series = st.multiselect(
-    " ¿Qué tipos de series ves con más frecuencia?",
-    ['Drama', 'Comedia', 'Documental', 'Acción', 'Suspenso'],
-    default=['Comedia', 'Acción', 'Suspenso']
-)
-st.write("Tipos de series elegidos:", series)
+if uso_rutas:
+    st.write("- Se seleccionó **optimizar rutas** para minimizar distancia recorrida.")
 
-# Pregunta 5
-actividades = st.multiselect(
-    " ¿Qué actividades disfrutas en tu tiempo libre?",
-    ['Leer', 'Hacer ejercicio', 'Jugar videojuegos', 'Ver películas', 'Salir con amigos'],
-    default=['Leer', 'Ver películas', 'Jugar videojuegos']
-)
-st.write("Actividades seleccionadas:", actividades)
+if consolidacion:
+    st.write("- Se eligió **consolidar entregas por zona** para reducir viajes.")
 
-st.markdown("---")
-st.caption("Gracias por tu participación. Esta encuesta es ficticia ")
+if horarios:
+    st.write("- Se propone **establecer horarios óptimos de entrega**.")
+
+if proveedores:
+    st.write("- Se considera usar **proveedores más cercanos** al cliente final.")
+
+if almacenamiento:
+    st.write("- Se plantea **reubicar almacenes** estratégicamente.")
+
+# Feedback final
+if not (uso_rutas or consolidacion or horarios or proveedores or almacenamiento):
+    st.info("Selecciona al menos una estrategia para continuar con el análisis.")
