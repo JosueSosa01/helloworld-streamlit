@@ -8,11 +8,11 @@ st.title("📋 Encuesta de hábitos digitales y tecnológicos")
 st.markdown("### 🎥 Antes de comenzar, revisa estos videos informativos:")
 
 # Video 1
-st.video("https://www.youtube.com/watch?v=E77jLzgYk7Q")  # Puedes reemplazar con un video sobre logística o tecnología
+st.video("https://www.youtube.com/watch?v=wPDPLcBGOKs")  # Puedes reemplazar con un video sobre logística o tecnología
 st.caption("📌 Video 1: ¿Qué es la experiencia del usuario en entornos digitales?")
 
 # Video 2
-st.video("https://www.youtube.com/watch?v=EV3I9vP4DPA")  # Puedes reemplazar por uno sobre eficiencia en procesos
+st.video("https://www.youtube.com/watch?v=7PMy-Wq1v-Y")  # Puedes reemplazar por uno sobre eficiencia en procesos
 st.caption("📌 Video 2: La importancia de la tecnología en la vida diaria")
 
 st.markdown("---")
