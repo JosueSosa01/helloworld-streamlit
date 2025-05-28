@@ -1,32 +1,49 @@
 import streamlit as st
-import time
 
-st.set_page_config(page_title="Barras de Progreso", layout="centered")
-st.title("⏳ Progreso paralelo en Streamlit")
+st.set_page_config(page_title="Encuesta de Usuario", layout="centered")
+st.title("📋 Encuesta de satisfacción del usuario")
 
-with st.expander("ℹ️ Acerca de esta app"):
-    st.write("Esta app muestra cómo manejar múltiples barras de progreso con diferentes velocidades usando `st.progress`.")
+st.subheader("Por favor, responde las siguientes 10 preguntas:")
 
-# Inicializar las barras de progreso
-st.subheader("🚀 Progreso de procesos paralelos")
+with st.form("form_encuesta"):
+    st.markdown("### 🧑 Datos personales")
 
-bar1 = st.progress(0)
-bar2 = st.progress(0)
-bar3 = st.progress(0)
+    nombre = st.text_input("1️⃣ ¿Cuál es tu nombre?")
+    edad = st.slider("2️⃣ ¿Qué edad tienes?", 15, 80, 25)
+    genero = st.radio("3️⃣ ¿Con qué género te identificas?", ["Masculino", "Femenino", "Otro", "Prefiero no decirlo"])
 
-st.write("Proceso 1: velocidad rápida ⚡")
-st.write("Proceso 2: velocidad media ⏱️")
-st.write("Proceso 3: velocidad lenta 🐢")
+    st.markdown("### 💻 Preferencias tecnológicas")
 
-# Ciclo de actualización
-for i in range(101):
-    time.sleep(0.03)  # Tiempo base
-    if i <= 100:
-        bar1.progress(i)  # rápido
-    if i % 2 == 0:
-        bar2.progress(i)  # medio
-    if i % 5 == 0:
-        bar3.progress(i)  # lento
+    sistema = st.selectbox("4️⃣ ¿Qué sistema operativo usas con más frecuencia?", ["Windows", "macOS", "Linux", "Otro"])
+    lenguaje = st.multiselect("5️⃣ ¿Qué lenguajes de programación has usado?", ["Python", "JavaScript", "Java", "C++", "Ninguno"])
+    experiencia = st.slider("6️⃣ ¿Cuántos años de experiencia tienes programando?", 0, 20, 2)
 
-st.success("¡Procesos completados!")
-st.balloons()
+    st.markdown("### 🌐 Hábitos digitales")
+
+    redes = st.selectbox("7️⃣ ¿Cuál es tu red social favorita?", ["Instagram", "TikTok", "Facebook", "LinkedIn", "X (Twitter)"])
+    horas = st.slider("8️⃣ ¿Cuántas horas al día pasas en internet?", 0, 12, 4)
+
+    st.markdown("### 📝 Valoración")
+
+    utilidad = st.radio("9️⃣ ¿Qué tan útil te pareció esta encuesta?", ["Nada útil", "Poco útil", "Útil", "Muy útil"])
+    comentarios = st.text_area("🔟 ¿Tienes algún comentario adicional o sugerencia?")
+
+    enviado = st.form_submit_button("Enviar respuestas")
+
+if enviado:
+    st.success("✅ ¡Gracias por completar la encuesta!")
+    st.markdown(f"""
+    ### 🧾 Resumen de respuestas:
+    - Nombre: `{nombre}`
+    - Edad: `{edad}`
+    - Género: `{genero}`
+    - Sistema operativo: `{sistema}`
+    - Lenguajes usados: `{', '.join(lenguaje) if lenguaje else 'Ninguno'}`
+    - Años de experiencia: `{experiencia}`
+    - Red social favorita: `{redes}`
+    - Horas en internet: `{horas}`
+    - Valoración: `{utilidad}`
+    - Comentarios: `{comentarios if comentarios else 'Ninguno'}`
+    """)
+else:
+    st.info("☝️ Completa la encuesta y haz clic en 'Enviar respuestas'.")
