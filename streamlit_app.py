@@ -1,54 +1,26 @@
 import streamlit as st
-import pandas as pd
-import numpy as np
-import altair as alt
 
-st.title(" Visualización de Datos No Relacionados al Reto")
+st.title("📋 Encuesta de preferencias del usuario")
 
-# --- 1. Gráfico de líneas ---
-st.subheader(" Ventas simuladas por trimestre (Gráfico de línea)")
+# Pregunta 1
+color = st.selectbox("🎨 ¿Cuál es tu color favorito?", ("Azul", "Rojo", "Verde", "Negro", "Amarillo"))
+st.write("Elegiste:", color)
 
-df_linea = pd.DataFrame(
-    np.random.randint(100, 500, size=(4, 3)),
-    columns=["Producto A", "Producto B", "Producto C"],
-    index=["Q1", "Q2", "Q3", "Q4"]
-)
+# Pregunta 2
+comida = st.selectbox("🍕 ¿Cuál es tu tipo de comida preferida?", ("Italiana", "Mexicana", "Japonesa", "India", "Vegana"))
+st.write("Te gusta la comida:", comida)
 
-st.line_chart(df_linea)
+# Pregunta 3
+plataforma = st.selectbox("🎮 ¿Qué consola prefieres para jugar videojuegos?", ("PlayStation", "Xbox", "Nintendo Switch", "PC", "Ninguna"))
+st.write("Prefieres jugar en:", plataforma)
 
-# --- 2. Gráfico de barras ---
-st.subheader(" Porcentaje de satisfacción por servicio (Gráfico de barras)")
+# Pregunta 4
+viaje = st.selectbox("🌍 ¿Qué destino elegirías para tus próximas vacaciones?", ("Playa", "Montaña", "Ciudad", "Bosque", "Extranjero"))
+st.write("Tu destino ideal es:", viaje)
 
-df_barras = pd.DataFrame({
-    "Servicio": ["Soporte", "Entrega", "Atención", "Postventa"],
-    "Satisfacción": [85, 72, 90, 78]
-})
+# Pregunta 5
+mascota = st.selectbox("🐾 ¿Cuál es tu mascota favorita?", ("Perro", "Gato", "Ave", "Pez", "Otro"))
+st.write("Tu mascota favorita es:", mascota)
 
-bar_chart = alt.Chart(df_barras).mark_bar().encode(
-    x="Servicio",
-    y="Satisfacción",
-    color="Servicio",
-    tooltip=["Servicio", "Satisfacción"]
-)
-
-st.altair_chart(bar_chart, use_container_width=True)
-
-# --- 3. Gráfico de dispersión ---
-st.subheader("🔬 Relación entre calidad y precio (Gráfico de dispersión)")
-
-df_dispersion = pd.DataFrame({
-    "Precio": np.random.uniform(100, 1000, 50),
-    "Calidad": np.random.uniform(1, 10, 50)
-})
-
-scatter = alt.Chart(df_dispersion).mark_circle(size=60).encode(
-    x="Precio",
-    y="Calidad",
-    tooltip=["Precio", "Calidad"]
-).interactive()
-
-st.altair_chart(scatter, use_container_width=True)
-
-# Pie de página
 st.markdown("---")
-st.caption("Datos generados artificialmente para fines de demostración.")
+st.caption("Gracias por completar esta encuesta ficticia 😊")
