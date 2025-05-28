@@ -1,26 +1,46 @@
 import streamlit as st
 
-st.title("📋 Encuesta de preferencias del usuario")
+st.title("Encuesta de selección múltiple")
 
 # Pregunta 1
-color = st.selectbox("🎨 ¿Cuál es tu color favorito?", ("Azul", "Rojo", "Verde", "Negro", "Amarillo"))
-st.write("Elegiste:", color)
+colores = st.multiselect(
+    " ¿Cuáles son tus colores favoritos?",
+    ['Verde', 'Amarillo', 'Rojo', 'Azul', 'Negro'],
+    default=['Rojo', 'Azul', 'Verde']
+)
+st.write("Colores elegidos:", colores)
 
 # Pregunta 2
-comida = st.selectbox("🍕 ¿Cuál es tu tipo de comida preferida?", ("Italiana", "Mexicana", "Japonesa", "India", "Vegana"))
-st.write("Te gusta la comida:", comida)
+comidas = st.multiselect(
+    "¿Qué tipos de comida te gustan más?",
+    ['Mexicana', 'Italiana', 'Japonesa', 'India', 'Vegana'],
+    default=['Mexicana', 'Japonesa', 'Italiana']
+)
+st.write("Comidas seleccionadas:", comidas)
 
 # Pregunta 3
-plataforma = st.selectbox("🎮 ¿Qué consola prefieres para jugar videojuegos?", ("PlayStation", "Xbox", "Nintendo Switch", "PC", "Ninguna"))
-st.write("Prefieres jugar en:", plataforma)
+musica = st.multiselect(
+    "🎵 ¿Qué géneros musicales escuchas frecuentemente?",
+    ['Pop', 'Rock', 'Clásica', 'Reggaetón', 'Jazz'],
+    default=['Pop', 'Rock', 'Jazz']
+)
+st.write("Géneros musicales favoritos:", musica)
 
 # Pregunta 4
-viaje = st.selectbox("🌍 ¿Qué destino elegirías para tus próximas vacaciones?", ("Playa", "Montaña", "Ciudad", "Bosque", "Extranjero"))
-st.write("Tu destino ideal es:", viaje)
+series = st.multiselect(
+    " ¿Qué tipos de series ves con más frecuencia?",
+    ['Drama', 'Comedia', 'Documental', 'Acción', 'Suspenso'],
+    default=['Comedia', 'Acción', 'Suspenso']
+)
+st.write("Tipos de series elegidos:", series)
 
 # Pregunta 5
-mascota = st.selectbox("🐾 ¿Cuál es tu mascota favorita?", ("Perro", "Gato", "Ave", "Pez", "Otro"))
-st.write("Tu mascota favorita es:", mascota)
+actividades = st.multiselect(
+    " ¿Qué actividades disfrutas en tu tiempo libre?",
+    ['Leer', 'Hacer ejercicio', 'Jugar videojuegos', 'Ver películas', 'Salir con amigos'],
+    default=['Leer', 'Ver películas', 'Jugar videojuegos']
+)
+st.write("Actividades seleccionadas:", actividades)
 
 st.markdown("---")
-st.caption("Gracias por completar esta encuesta ficticia 😊")
+st.caption("Gracias por tu participación. Esta encuesta es ficticia ")
