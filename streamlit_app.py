@@ -1,69 +1,32 @@
 import streamlit as st
-import pandas as pd
-import numpy as np
-import altair as alt
+import time
 
-# Configuración de página
-st.set_page_config(layout="wide", page_title="App con 5 Secciones", page_icon="🧩")
+st.set_page_config(page_title="Barras de Progreso", layout="centered")
+st.title("⏳ Progreso paralelo en Streamlit")
 
-# Título de la app
-st.title("🎯 App interactiva con 5 secciones diferentes")
-
-# Expander informativo
 with st.expander("ℹ️ Acerca de esta app"):
-    st.write("Esta app muestra cómo organizar el contenido en Streamlit en un layout de columnas con diferentes elementos visuales e interactivos.")
+    st.write("Esta app muestra cómo manejar múltiples barras de progreso con diferentes velocidades usando `st.progress`.")
 
-# Sección de entrada lateral
-st.sidebar.header("🔧 Opciones de entrada")
-nombre = st.sidebar.text_input("¿Cuál es tu nombre?")
-color = st.sidebar.selectbox("Elige un color favorito:", ["", "Rojo", "Azul", "Verde", "Amarillo"])
-mostrar = st.sidebar.button("Mostrar saludo")
+# Inicializar las barras de progreso
+st.subheader("🚀 Progreso de procesos paralelos")
 
-# Layout de 5 secciones
-col1, col2, col3 = st.columns(3)
-col4, col5 = st.columns(2)
+bar1 = st.progress(0)
+bar2 = st.progress(0)
+bar3 = st.progress(0)
 
-# Sección 1 - Texto dinámico
-with col1:
-    st.subheader("👋 Saludo")
-    if mostrar and nombre:
-        st.success(f"¡Hola, {nombre}!")
-    else:
-        st.info("Escribe tu nombre y presiona el botón para saludar.")
+st.write("Proceso 1: velocidad rápida ⚡")
+st.write("Proceso 2: velocidad media ⏱️")
+st.write("Proceso 3: velocidad lenta 🐢")
 
-# Sección 2 - Selección
-with col2:
-    st.subheader("🎨 Color favorito")
-    if color:
-        st.write(f"Tu color favorito es **{color}**")
-    else:
-        st.warning("Aún no seleccionas un color.")
+# Ciclo de actualización
+for i in range(101):
+    time.sleep(0.03)  # Tiempo base
+    if i <= 100:
+        bar1.progress(i)  # rápido
+    if i % 2 == 0:
+        bar2.progress(i)  # medio
+    if i % 5 == 0:
+        bar3.progress(i)  # lento
 
-# Sección 3 - Gráfico
-with col3:
-    st.subheader("📊 Gráfico de barras")
-    data = pd.DataFrame({
-        "Categoría": ["A", "B", "C", "D"],
-        "Valor": np.random.randint(10, 100, 4)
-    })
-    chart = alt.Chart(data).mark_bar().encode(
-        x="Categoría", y="Valor", color="Categoría", tooltip=["Categoría", "Valor"]
-    )
-    st.altair_chart(chart, use_container_width=True)
-
-# Sección 4 - Imagen
-with col4:
-    st.subheader("🖼️ Imagen destacada")
-    st.image("https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1024px-React-icon.svg.png", width=200)
-    st.caption("Logo de React - Imagen externa usada como ejemplo.")
-
-# Sección 5 - Botón extra
-with col5:
-    st.subheader("🔘 Acción extra")
-    if st.button("¿Te gusta Streamlit?"):
-        st.balloons()
-        st.success("¡Nos alegra saberlo! 🎈")
-
-# Pie de página
-st.markdown("---")
-st.caption("App creada por Josué · Todos los datos son de prueba.")
+st.success("¡Procesos completados!")
+st.balloons()
