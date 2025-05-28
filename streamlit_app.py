@@ -1,34 +1,17 @@
 import streamlit as st
 
-st.title("🚚 Opciones de Optimización Logística")
+st.title('🎨 Personalización del Tema en Streamlit')
 
-st.write("Selecciona las estrategias que aplicarías para reducir los costos de envío:")
+st.write('Este es el contenido del archivo `.streamlit/config.toml` que define el tema de esta app:')
+st.code("""
+[theme]
+primaryColor="#F39C12"
+backgroundColor="#2E86C1"
+secondaryBackgroundColor="#AED6F1"
+textColor="#FFFFFF"
+font="monospace"
+""", language='toml')
 
-# Checkboxes relacionadas al reto
-uso_rutas = st.checkbox(" Optimizar rutas con menor distancia")
-consolidacion = st.checkbox(" Consolidar pedidos por zona")
-horarios = st.checkbox(" Establecer ventanas de entrega eficientes")
-proveedores = st.checkbox(" Usar proveedores locales")
-almacenamiento = st.checkbox("Reubicar centros de distribución")
+number = st.sidebar.slider('Selecciona un número:', 0, 10, 5)
+st.write('Número seleccionado:', number)
 
-# Mostrar selección
-st.subheader(" Estrategias seleccionadas:")
-
-if uso_rutas:
-    st.write("- Se seleccionó **optimizar rutas** para minimizar distancia recorrida.")
-
-if consolidacion:
-    st.write("- Se eligió **consolidar entregas por zona** para reducir viajes.")
-
-if horarios:
-    st.write("- Se propone **establecer horarios óptimos de entrega**.")
-
-if proveedores:
-    st.write("- Se considera usar **proveedores más cercanos** al cliente final.")
-
-if almacenamiento:
-    st.write("- Se plantea **reubicar almacenes** estratégicamente.")
-
-# Feedback final
-if not (uso_rutas or consolidacion or horarios or proveedores or almacenamiento):
-    st.info("Selecciona al menos una estrategia para continuar con el análisis.")
